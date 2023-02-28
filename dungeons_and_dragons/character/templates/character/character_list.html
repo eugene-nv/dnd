@@ -1,0 +1,12 @@
+{% extends 'character/base.html' %}
+
+{% block content %}
+<h1>Список созданных персонажей:</h1>
+<ul>
+    {% for char in character %}
+    <li>{{char.name}}</li>
+    <li>{{char.race}}</li>
+    <li>{{char.description}}</li>
+    {% endfor %}
+</ul>
+{% endblock content %}
