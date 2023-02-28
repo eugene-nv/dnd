@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 class CharacterCreate(models.Model):
     class CharacterCard(models.Model):
@@ -73,6 +75,9 @@ class CharacterCreate(models.Model):
 
         def __str__(self):
             return self.name
+
+        def get_absolute_url(self):
+            return reverse('character', kwargs={'character_id': self.pk})
 
         class Meta:
             verbose_name = 'Карточка персонажа'
