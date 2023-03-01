@@ -30,12 +30,21 @@ def character_list(request):
 def character(request, character_id): # После добавления персонажей в базу данных и оформления шаблона нужно прописать url <a href="{{ char.get_absolute_url }}"
     return HttpResponse(f'Персонаж с id = {character_id}')
 
+
 def character_create(request):
-    return HttpResponse('Создание персонажа')
+    context = {
+        'menu': menu,
+        'title': 'Создание персонажа',
+    }
+    return render(request, 'character/character_create.html', context)
 
 
 def login(request):
-    return HttpResponse('Войти в личный кабинет')
+    context = {
+        'menu': menu,
+        'title': 'Авторизация пользователя',
+    }
+    return render(request, 'character/login.html', context)
 
 
 def pageNotFound(request, exception):
