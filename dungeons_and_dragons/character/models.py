@@ -69,6 +69,7 @@ class CharacterCreate(models.Model):
     intellect = models.IntegerField('Интеллект')
     wizdom = models.IntegerField('Мудрость')
     charisma = models.IntegerField('Харизма')
+    time_create = models.DateTimeField(auto_now_add=True)
 
     DoesNotExist = models.Manager
 
@@ -78,7 +79,7 @@ class CharacterCreate(models.Model):
     class Meta:
         verbose_name = 'Карточка персонажа'
         verbose_name_plural = 'Карточки персонажей'
+        ordering = ['time_create']
 
-
-def get_absolute_url(self):
-    return reverse('character', kwargs={'character_id': self.pk})
+    def get_absolute_url(self):
+        return reverse('character', kwargs={'character_id': self.pk})
