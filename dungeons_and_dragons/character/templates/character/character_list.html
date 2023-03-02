@@ -4,9 +4,13 @@
 <h1>Список созданных персонажей:</h1>
 <ul>
     {% for char in character %}
-    <li>{{char.name}}</li>
-    <li>{{char.race}}</li>
-    <li>{{char.description}}</li>
+    <h2>{{char.name}}</h2>
+    {% if char.portrait %}
+	<p><img class="img-article-left thumb" src="{{char.portrait.url}}"></p>
+    {% endif %}
+    <h3>{{char.race}}</h3>
+    <p>{{char.description}}</p>
+    <br>
     {% endfor %}
 </ul>
 {% endblock content %}
