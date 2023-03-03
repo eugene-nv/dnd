@@ -11,7 +11,6 @@ menu = [{'title': 'Главная страница', 'url_name': 'home'},
 
 def index(request):
     context = {
-        'menu': menu,
         'title': 'Главная страница'
     }
     return render(request, 'character/index.html', context)
@@ -20,7 +19,6 @@ def index(request):
 def character_list(request):
     character = CharacterCreate.objects.all()
     context = {
-        'menu': menu,
         'title': 'Список персонажей',
         'character': character
     }
@@ -33,7 +31,6 @@ def character(request, character_id): # После добавления перс
 
 def character_create(request):
     context = {
-        'menu': menu,
         'title': 'Создание персонажа',
     }
     return render(request, 'character/character_create.html', context)
@@ -41,7 +38,6 @@ def character_create(request):
 
 def login(request):
     context = {
-        'menu': menu,
         'title': 'Авторизация пользователя',
     }
     return render(request, 'character/login.html', context)
