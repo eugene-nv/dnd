@@ -57,19 +57,51 @@ class CharacterCreate(models.Model):
         (FEMALE, 'Женский'),
         ]
 
-    name = models.CharField('Имя', max_length=20)
-    race = models.CharField('Раса', max_length=20, choices=RACE)
-    ideology = models.CharField('Мировоззрение', max_length=50, choices=IDEOLOGY)
-    description = models.TextField('Описание персонажа', max_length=1000)
-    gender = models.CharField('Пол', max_length=20, choices=GENDER)
-    portrait = models.ImageField('Портрет', upload_to='portraits/')
-    strenght = models.IntegerField('Сила')
-    dexterity = models.IntegerField('Ловкость')
-    constitution = models.IntegerField('Телосложение')
-    intellect = models.IntegerField('Интеллект')
-    wizdom = models.IntegerField('Мудрость')
-    charisma = models.IntegerField('Харизма')
+    BARD = 'Бард'
+    BARBARIAN = 'Варвар'
+    WARRIOR = 'Воин'
+    WIZARD = 'Волшебник'
+    DRUID = 'Друид'
+    CLERIC = 'Жрец'
+    WARLOCK = 'Колдун'
+    MONK = 'Монах'
+    PALADIN = 'Паладин'
+    ROGUE = 'Плут'
+    RANGER = 'Следопыт'
+    SORCERER = 'Чародей'
+
+    CLASS = [
+        (BARD, 'Бард'),
+        (BARBARIAN, 'Варвар'),
+        (WARRIOR, 'Воин'),
+        (WIZARD, 'Волшебник'),
+        (DRUID, 'Друид'),
+        (CLERIC, 'Жрец'),
+        (WARLOCK, 'Колдун'),
+        (MONK, 'Монах'),
+        (PALADIN, 'Паладин'),
+        (ROGUE, 'Плут'),
+        (RANGER, 'Следопыт'),
+        (SORCERER, 'Чародей'),
+
+    ]
+
+    name = models.CharField(verbose_name='Имя', max_length=255)
+    race = models.CharField(verbose_name='Раса', max_length=255, choices=RACE)
+    klass = models.CharField(verbose_name='Класс', max_length=255, choices=CLASS)
+    ideology = models.CharField(verbose_name='Мировоззрение', max_length=255, choices=IDEOLOGY)
+    description = models.TextField(verbose_name='Описание персонажа', max_length=999)
+    gender = models.CharField(verbose_name='Пол', max_length=255, choices=GENDER)
+    portrait = models.ImageField(verbose_name='Портрет', upload_to='portraits/')
+    strenght = models.IntegerField(verbose_name='Сила')
+    dexterity = models.IntegerField(verbose_name='Ловкость')
+    constitution = models.IntegerField(verbose_name='Телосложение')
+    intellect = models.IntegerField(verbose_name='Интеллект')
+    wizdom = models.IntegerField(verbose_name='Мудрость')
+    charisma = models.IntegerField(verbose_name='Харизма')
+
     time_create = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(verbose_name='URL', max_length=255, unique=True, db_index=True)
 
     DoesNotExist = models.Manager
 
@@ -82,4 +114,4 @@ class CharacterCreate(models.Model):
         ordering = ['time_create']
 
     def get_absolute_url(self):
-        return reverse('character', kwargs={'character_id': self.pk})
+        return reverse('character', kwargs={'character_slug': self.slug})

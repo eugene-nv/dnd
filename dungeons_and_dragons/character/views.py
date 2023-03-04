@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 
 from character.models import CharacterCreate
@@ -25,8 +25,14 @@ def character_list(request):
     return render(request, 'character/character_list.html', context)
 
 
-def character(request, character_id): # После добавления персонажей в базу данных и оформления шаблона нужно прописать url <a href="{{ char.get_absolute_url }}"
-    return HttpResponse(f'Персонаж с id = {character_id}')
+def character(request, character_slug):
+    card = get_object_or_404(CharacterCreate, slug=character_slug)
+
+    context = {
+        'card': card,
+        'name': card.name
+    }
+    return render(request, 'character/card.html', context=context)
 
 
 def character_create(request):

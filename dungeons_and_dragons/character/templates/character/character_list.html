@@ -8,9 +8,11 @@
     {% if char.portrait %}
 	<p><img class="img-article-left thumb" src="{{char.portrait.url}}"></p>
     {% endif %}
-    <h3>{{char.race}}</h3>
+    <h3>{{char.race}} - {{char.klass}} </h3>
     <p>{{char.description}}</p>
+    <p class="link-read-post"><a href="{{ char.get_absolute_url }}">Открыть карточку персонажа</a></p>
     <br>
     {% endfor %}
+
 </ul>
 {% endblock content %}

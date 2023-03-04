@@ -1,0 +1,26 @@
+{% extends 'character/base.html' %}
+
+{% block content %}
+<h1>{{ name }}</h1>
+
+{% if card.portrait %}
+<p><img class="img-article-left thumb" src="{{card.portrait.url}}"></p>
+{% endif %}
+
+{{ card.description }}
+<br>
+
+<h3>Раса: {{ card.race }}</h3>
+<h3>Пол: {{ card.gender }}</h3>
+<h3>Класс: {{ card.klass }}</h3>
+<h3>Мировоззрение: {{ card.ideology }}</h3>
+<br>
+<h2>Характеристики:</h2>
+<h3>Сила: {{ card.strenght }}</h3>
+<h3>Ловкость: {{ card.dexterity }}</h3>
+<h3>Телосложение: {{ card.constitution }}</h3>
+<h3>Интеллект: {{ card.intellect }}</h3>
+<h3>Мудрость: {{ card.wizdom }}</h3>
+<h3>Харизма: {{ card.charisma }}</h3>
+
+{% endblock content %}
