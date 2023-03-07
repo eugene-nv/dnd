@@ -3,4 +3,18 @@
 {% block content %}
 <h1>Создание персонажа</h1>
 <p>Форма для создания нового персонажа</p>
+
+
+<form action="{%  url 'character_create'  %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-error">{{ form.non_field_errors }}</div>
+
+      {% for f in form %}
+      <p><label for="{{  f.id_for_label  }}"></label></p> {{  f.label  }}:</label> {{ f }}</p>
+      <div>{{  f.error  }}</div>
+      {% endfor %}
+
+      <button type="submit">Добавить</button>
+</form>
 {% endblock content %}

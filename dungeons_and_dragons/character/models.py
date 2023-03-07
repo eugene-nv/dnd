@@ -14,6 +14,7 @@ class CharacterCreate(models.Model):
     TIEFLING = 'Тифлинг'
 
     RACE = [
+        (None, 'Выберете расу'),
         (DWARF, 'Дварф'),
         (ELF, 'Эльф'),
         (HALFLING, 'Полурослик'),
@@ -37,6 +38,7 @@ class CharacterCreate(models.Model):
     CE = 'Хаотично - злой'
 
     IDEOLOGY = [
+        (None, 'Выберете мировоззрение'),
         (LG, 'Законно - добрый'),
         (NG, 'Нейтрально - добрый'),
         (CG, 'Хаотично - добрый'),
@@ -53,6 +55,7 @@ class CharacterCreate(models.Model):
     FEMALE = 'Женский'
 
     GENDER = [
+        (None, 'Выберете пол'),
         (MALE, 'Мужской'),
         (FEMALE, 'Женский'),
         ]
@@ -71,6 +74,7 @@ class CharacterCreate(models.Model):
     SORCERER = 'Чародей'
 
     CLASS = [
+        (None, 'Выберете класс'),
         (BARD, 'Бард'),
         (BARBARIAN, 'Варвар'),
         (WARRIOR, 'Воин'),

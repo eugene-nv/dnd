@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 
 from character.models import CharacterCreate
+from .forms import AddCharacterForm
 
 menu = [{'title': 'Главная страница', 'url_name': 'home'},
         {'title': 'Список персонажей', 'url_name': 'character_list'},
@@ -36,8 +37,16 @@ def character(request, character_slug):
 
 
 def character_create(request):
+    if request.method == 'POST':
+        form = AddCharacterForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('character_list')
+    else:
+        form = AddCharacterForm()
     context = {
         'title': 'Создание персонажа',
+        'form': form,
     }
     return render(request, 'character/character_create.html', context)
 
