@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 
 from character.models import CharacterCreate
 from .forms import AddCharacterForm
@@ -11,6 +11,9 @@ menu = [{'title': 'Главная страница', 'url_name': 'home'},
 
 
 def index(request):
+
+    ''' Главная страница '''
+
     context = {
         'title': 'Главная страница'
     }
@@ -18,6 +21,9 @@ def index(request):
 
 
 def character_list(request):
+
+    ''' Список персонажей '''
+
     character = CharacterCreate.objects.all()
     context = {
         'title': 'Список персонажей',
@@ -27,6 +33,9 @@ def character_list(request):
 
 
 def character(request, character_slug):
+
+    ''' Страница персонажа '''
+
     card = get_object_or_404(CharacterCreate, slug=character_slug)
 
     context = {
@@ -37,6 +46,9 @@ def character(request, character_slug):
 
 
 def character_create(request):
+
+    ''' Создание персонажа '''
+
     if request.method == 'POST':
         form = AddCharacterForm(request.POST, request.FILES)
         if form.is_valid():
@@ -52,6 +64,9 @@ def character_create(request):
 
 
 def login(request):
+
+    ''' Страница авторизации (пока не готова) '''
+
     context = {
         'title': 'Авторизация пользователя',
     }
@@ -59,5 +74,8 @@ def login(request):
 
 
 def pageNotFound(request, exception):
+
+    ''' 404 ошибка '''
+
     return HttpResponseNotFound('<h1>Сорян =(( Такой страницы не существует =(</h1>')
 
