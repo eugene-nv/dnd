@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseNotFound
+from django.views.decorators.csrf import csrf_exempt
 
 from character.models import CharacterCreate
 from .forms import AddCharacterForm
@@ -20,6 +21,7 @@ def index(request):
     return render(request, 'character/index.html', context)
 
 
+@csrf_exempt
 def character_list(request):
 
     ''' Список персонажей '''
