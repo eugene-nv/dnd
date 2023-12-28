@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="m-16 p-4 flex flex-row border-4 border-red-600/50 rounded-lg bg-yellow-50">
+    <div class="flex flex-nowrap justify-center">
+        <p><img class="h-144 w-96 object-cover rounded-lg" src="{{creature.image.url}}" alt="img"></p>
+        <div class="px-8">
+                <p class="font-semibold">{{ creature.name }}</p>
+                <p class="font-semibold">{{ creature.kind }}</p><br>
+                <p>Здоровье: {{ creature.hp }}</p>
+                <p>Класс брони: {{ creature.ac }}</p><br>
+                <p class="font-semibold">Характеристики:</p><br>
+                <p>Сила {{ creature.strength }}</p>
+                <p>Ловкость {{ creature.dexterity }}</p>
+                <p>Телосложение {{ creature.constitution }}</p>
+                <p>Интеллект {{ creature.intelligence }}</p>
+                <p>Мудрость {{ creature.wisdom }}</p>
+                <p>Харизма {{ creature.charisma }}</p><br>
+                <p>Опыт {{ creature.experience }}</p><br>
+        </div>
+    </div>
+</div>
+{% endblock content %}

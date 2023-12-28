@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-wrap">
+    {% for creature in bestiary %}
+    <div class="px-4 pt-4 m-8 border-4 border-red-600/50 rounded-lg hover:bg-yellow-50" >
+        <a class="underline underline-offset-2 font-semibold text-red-700 hover:text-red-500 justify-center flex" href="{% url 'show_creature' creature.pk %}">{{ creature }}</a><br>
+        <p><img class="h-72 w-48 object-cover rounded-lg" src="{{creature.image.url}}" alt="img"></p><br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
